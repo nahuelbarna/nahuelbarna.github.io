@@ -386,15 +386,15 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Investigación Fundamental en Acciones</h1>
-                <p>Análisis DCF detallado y reportes de valuación de empresas latinoamericanas. Basado en datos públicos y metodología rigurosa.</p>
+                <h1>Investigación Fundamental de Acciones</h1>
+                <p>Análisis de Equity y Valuación de Empresas</p>
                 <a href="#reportes" class="cta-button">Ver Reportes</a>
             </div>
         </section>
 
         <section class="reports-section" id="reportes">
             <div class="container">
-                <h2 class="section-title">Serie de Investigación 2025</h2>
+                <h2 class="section-title">Análisis Disponibles</h2>
                 <div class="reports-grid" id="reportsContainer">
                     <!-- Los reportes se cargan dinámicamente aquí -->
                 </div>
@@ -405,22 +405,22 @@
             <div class="container">
                 <div class="about-content">
                     <div class="about-text">
-                        <h3>Metodología de Análisis</h3>
-                        <p>Realizo investigación fundamental rigurosa en acciones latinoamericanas, con especial enfoque en empresas que cotizan en bolsas como MERVAL y B3.</p>
+                        <h3>Mi Enfoque</h3>
+                        <p>Mi enfoque se basa en un análisis integral de la empresa: empiezo por entender su historia, el management y cómo funciona su modelo de negocio para generar ingresos. Con esa base clara, analizo a fondo los estados financieros de los últimos años para validar la consistencia del negocio y fundamentar mis proyecciones.</p>
                         <p>Cada reporte incluye:</p>
                         <ul class="features-list">
-                            <li>Análisis de estados financieros históricos</li>
-                            <li>Modelo DCF con proyecciones a 10 años</li>
-                            <li>Análisis de múltiplos y comparables</li>
-                            <li>Estimación de costo de capital (WACC)</li>
-                            <li>Identificación de riesgos y catalistas</li>
-                            <li>Recomendación clara con precio objetivo</li>
+                            <li>Estados financieros</li>
+                            <li>Proyecciones DCF</li>
+                            <li>Valuación relativa</li>
+                            <li>Análisis de crecimiento</li>
+                            <li>Riesgos identificados</li>
+                            <li>Precio objetivo</li>
                         </ul>
                     </div>
                     <div class="methodology">
                         <h4>Enfoque de Valuación</h4>
-                        <p>Utilizo el Discounted Cash Flow (DCF) como método principal de valuación, complementado con análisis de múltiplos históricos y sectoriales.</p>
-                        <p style="margin-top: 1rem; font-size: 0.95rem; color: #94a3b8;">El objetivo es identificar oportunidades de inversión con margen de seguridad significativo.</p>
+                        <p>Mi análisis comienza con la comprensión del negocio: historia de la empresa, calidad del management y modelo de generación de ingresos. Con esa base sólida, profundizo en los estados financieros históricos para validar la consistencia operativa y construir proyecciones fundamentadas.</p>
+                        <p style="margin-top: 1rem; font-size: 0.95rem; color: #94a3b8;">De esta forma, puedo identificar oportunidades con un margen de seguridad significativo para la inversión.</p>
                     </div>
                 </div>
             </div>
@@ -443,7 +443,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Portal</h4>
-                    <a href="https://nahuelbarna.netlify.app">Ir al portal de research</a>
+                    <a href="https://nahuelbarna.github.io">Ir al portal de research</a>
                 </div>
                 <div class="footer-section">
                     <h4>Información</h4>
@@ -464,10 +464,10 @@
                 ticker: 'MELI',
                 company: 'MercadoLibre',
                 date: 'Enero 2025',
-                description: 'Análisis completo de MercadoLibre con proyecciones a 10 años. Incluye valuación de Fintech y Publicidad.',
+                description: 'Análisis de los estados financieros de MELI',
                 priceTarget: '$2,919 (+71.7%)',
                 recommendation: 'COMPRA',
-                pdfLink: 'https://drive.google.com/file/d/1example/view'
+                pdfLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/Meli%20Research.docx.pdf'
             },
             {
                 ticker: 'NU',
@@ -492,7 +492,14 @@
         // Render reports
         function renderReports() {
             const container = document.getElementById('reportsContainer');
-            container.innerHTML = reports.map(report => `
+            container.innerHTML = reports.map(report => {
+                // Convertir link de GitHub a descarga directa
+                let downloadLink = report.pdfLink;
+                if (report.pdfLink !== '#' && report.pdfLink.includes('github.com')) {
+                    downloadLink = report.pdfLink.replace('/blob/main/', '/raw/main/');
+                }
+                
+                return `
                 <div class="report-card">
                     <span class="ticker">${report.ticker}</span>
                     <h3 class="report-title">${report.company}</h3>
@@ -503,11 +510,12 @@
                     <p class="report-description">${report.description}</p>
                     <div class="price-target">${report.priceTarget}</div>
                     ${report.pdfLink !== '#' ? 
-                        `<a href="${report.pdfLink}" target="_blank" class="report-link">Leer Reporte Completo →</a>` :
+                        `<a href="${downloadLink}" target="_blank" class="report-link">Leer Reporte Completo →</a>` :
                         `<span style="color: #64748b;">Reporte en desarrollo...</span>`
                     }
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // Smooth scroll
@@ -524,10 +532,5 @@
         // Initialize
         renderReports();
     </script>
-</body>
-</html>
-    </div>
-</footer>
-
 </body>
 </html>

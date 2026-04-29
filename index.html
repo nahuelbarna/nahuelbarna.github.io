@@ -367,6 +367,97 @@
                 padding: 3rem 0;
             }
         }
+
+        .macro-section {
+            padding: 5rem 0;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.02) 0%, transparent 100%);
+        }
+
+        .macro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .macro-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .macro-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .macro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 100%);
+        }
+
+        .macro-indicator {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.15);
+            color: #06b6d4;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .macro-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: #f1f5f9;
+        }
+
+        .macro-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #06b6d4;
+            margin: 1rem 0;
+        }
+
+        .macro-value.negative {
+            color: #ef4444;
+        }
+
+        .macro-value.positive {
+            color: #22c55e;
+        }
+
+        .macro-description {
+            color: #a0aec0;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .macro-link {
+            display: inline-block;
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .macro-link:hover {
+            border-bottom-color: #06b6d4;
+        }
     </style>
 </head>
 <body>
@@ -376,6 +467,7 @@
                 <div class="logo">Nahuel Barna</div>
                 <ul class="nav-links">
                     <li><a href="#reportes">Reportes</a></li>
+                    <li><a href="#macro">Datos Macro</a></li>
                     <li><a href="#sobre">Sobre mí</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
@@ -424,6 +516,13 @@
                     </div>
                 </div>
             </div>
+        <section class="macro-section" id="macro">
+            <div class="container">
+                <h2 class="section-title">Argentina - Datos Macro</h2>
+                <div class="macro-grid" id="macroContainer">
+                    <!-- Los indicadores se cargan dinámicamente aquí -->
+                </div>
+            </div>
         </section>
     </main>
 
@@ -448,7 +547,8 @@
                 <div class="footer-section">
                     <h4>Información</h4>
                     <a href="#reportes">Reportes</a>
-                    <a href="#sobre">Metodología</a>
+                    <a href="#macro">Datos Macro</a>
+                    <a href="#sobre">Mi Enfoque</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -489,17 +589,76 @@
             }
         ];
 
-        // Render reports
+        // Data de indicadores macro Argentina
+        const macroIndicators = [
+            {
+                name: 'IPC',
+                label: 'Inflación',
+                value: '3.4%',
+                valueClass: 'negative',
+                description: 'Índice de Precios al Consumidor (Marzo)',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/ipc.png'
+            },
+            {
+                name: 'DESEMPLEO',
+                label: 'Tasa de Desempleo',
+                value: '7.5%',
+                valueClass: 'negative',
+                description: 'Población desocupada sobre PEA (últimas trimestre)',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/desempleo.png'
+            },
+            {
+                name: 'SALARIOS',
+                label: 'Salarios Reales',
+                value: '2.4%',
+                valueClass: 'negative',
+                description: 'ültimo mes (febrero)',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/salarios.png'
+            },
+            {
+                name: 'EMAE',
+                label: 'EMAE',
+                value: '-2.6%',
+                valueClass: 'negative',
+                description: 'Estimador Mensual de Actividad Económica',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/emae.png'
+            },
+            {
+                name: 'BALANZA',
+                label: 'Balanza Comercial',
+                value: '+USD 2.523 M',
+                valueClass: 'positive',
+                description: 'Balanza comercial último mes (marzo)',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/balanza.png'
+            },
+            {
+                name: 'TAMAR',
+                label: 'Tasa de Interés',
+                value: '22.31%',
+                valueClass: 'positive',
+                description: 'Tasa Mayorista Argentina',
+                chartLink: 'https://github.com/nahuelbarna/nahuelbarna.github.io/blob/main/charts/tasa.png'
+            }
+        ];
+
+        // Render macro indicators
+        function renderMacroIndicators() {
+            const container = document.getElementById('macroContainer');
+            if (!container) return;
+            
+            container.innerHTML = macroIndicators.map(indicator => `
+                <div class="macro-card">
+                    <span class="macro-indicator">${indicator.name}</span>
+                    <h3 class="macro-title">${indicator.label}</h3>
+                    <div class="macro-value ${indicator.valueClass}">${indicator.value}</div>
+                    <p class="macro-description">${indicator.description}</p>
+                    <a href="${indicator.chartLink}" target="_blank" class="macro-link">Ver Gráfico →</a>
+                </div>
+            `).join('');
+        }
         function renderReports() {
             const container = document.getElementById('reportsContainer');
-            container.innerHTML = reports.map(report => {
-                // Convertir link de GitHub a descarga directa
-                let downloadLink = report.pdfLink;
-                if (report.pdfLink !== '#' && report.pdfLink.includes('github.com')) {
-                    downloadLink = report.pdfLink.replace('/blob/main/', '/raw/main/');
-                }
-                
-                return `
+            container.innerHTML = reports.map(report => `
                 <div class="report-card">
                     <span class="ticker">${report.ticker}</span>
                     <h3 class="report-title">${report.company}</h3>
@@ -510,12 +669,11 @@
                     <p class="report-description">${report.description}</p>
                     <div class="price-target">${report.priceTarget}</div>
                     ${report.pdfLink !== '#' ? 
-                        `<a href="${downloadLink}" target="_blank" class="report-link">Leer Reporte Completo →</a>` :
+                        `<a href="${report.pdfLink}" target="_blank" class="report-link">Leer Reporte Completo →</a>` :
                         `<span style="color: #64748b;">Reporte en desarrollo...</span>`
                     }
                 </div>
-            `;
-            }).join('');
+            `).join('');
         }
 
         // Smooth scroll
@@ -531,6 +689,7 @@
 
         // Initialize
         renderReports();
+        renderMacroIndicators();
     </script>
 </body>
 </html>

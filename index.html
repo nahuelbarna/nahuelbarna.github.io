@@ -3,161 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nahuel | Finance & Analysis</title>
+    <meta name="description" content="Investigación fundamental en acciones latinoamericanas. Reportes de análisis DCF y valuación.">
+    <meta name="author" content="Nahuel Barna">
+    <title>Investigación de Acciones | Nahuel Barna</title>
+    <meta property="og:title" content="Investigación de Acciones">
+    <meta property="og:description" content="Análisis fundamental y reportes de valuación en español">
+    <meta property="og:type" content="website">
     <style>
-        :root {
-            --bloomberg-blue: #0000ff;
-            --dark-grey: #121212;
-            --light-grey: #f4f4f4;
-            --border: #e0e0e0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            color: #e2e8f0;
             line-height: 1.6;
-            color: var(--dark-grey);
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
+            overflow-x: hidden;
         }
 
         header {
-            border-bottom: 3px solid var(--dark-grey);
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            text-align: center;
+            background: rgba(15, 20, 25, 0.95);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin: 0;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .subtitle {
-            color: var(--bloomberg-blue);
-            font-weight: bold;
-            margin-top: 5px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        section {
-            margin-bottom: 30px;
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
 
-        h2 {
-            border-bottom: 1px solid var(--dark-grey);
-            padding-bottom: 5px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
+        .nav-links a:hover {
+            color: #06b6d4;
         }
 
-        .card {
-            border: 1px solid var(--border);
-            padding: 15px;
-            margin-bottom: 15px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--bloomberg-blue);
-            background-color: #fafafa;
-        }
-
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            color: var(--bloomberg-blue);
-        }
-
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border);
+        .hero {
+            padding: 5rem 0;
             text-align: center;
-            color: #666;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #a0aec0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .reports-section {
+            padding: 5rem 0;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .report-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .report-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+        }
+
+        .ticker {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: #06b6d4;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .report-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: #f1f5f9;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin: 1.5rem 0;
+        }
+
+        .price-target {
+            background: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .report-description {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .report-link {
+            display: inline-block;
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .report-link:hover {
+            border-bottom-color: #06b6d4;
+        }
+
+        .about-section {
+            padding: 5rem 0;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.02) 0%, transparent 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: 700;
+        }
+
+        .methodology {
+            background: rgba(15, 20, 25, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .methodology h4 {
+            color: #06b6d4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        footer {
+            background: rgba(15, 20, 25, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #06b6d4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #a0aec0;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #06b6d4;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            color: #06b6d4;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(6, 182, 212, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: #64748b;
         }
 
         @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .reports-section, .about-section {
+                padding: 3rem 0;
+            }
         }
     </style>
 </head>
 <body>
-
-<header>
-    <div class="container">
-        <h1>NAHUEL BARNA</h1>
-        <div class="subtitle">FINANCE STUDENT @ UADE | INVESTMENT ANALYSIS</div>
-    </div>
-</header>
-
-<div class="container">
-    <div class="grid">
-        <!-- Columna Principal -->
-        <main>
-            <section>
-                <h2>Análisis de Equity</h2>
-                <div class="card">
-                    <h3>MercadoLibre (MELI)</h3>
-                    <p>Valuación mediante DCF y análisis de múltiplos comparables. Proyección de flujo de caja libre basada en expansión regional.</p>
-                </div>
-                <div class="card">
-                    <h3>NVIDIA (NVDA)</h3>
-                    <p>Análisis de WACC y sensibilidad ante cambios en la tasa libre de riesgo y crecimiento terminal (g).</p>
-                </div>
-                <div class="card">
-                    <h3>Apple & Microsoft</h3>
-                    <p>Comparativa de estructuras de capital y retorno sobre capital invertido (ROIC).</p>
-                </div>
-            </section>
-
-            <section>
-                <h2>Macroeconomía Argentina</h2>
-                <div class="card">
-                    <h3>Monitor de Variables</h3>
-                    <p>Seguimiento de inflación (IPC), reservas del BCRA y brecha cambiaria (MEP/CCL).</p>
-                </div>
-            </section>
-        </main>
-
-        <!-- Columna Lateral -->
-        <aside>
-            <section>
-                <h2>Formación</h2>
-                <p><strong>Lic. en Finanzas</strong><br>UADE (2° Año)</p>
-                <p><strong>Certificaciones</strong><br>Preparando Idoneidad CNV</p>
-            </section>
-
-            <section>
-                <h2>Skills</h2>
-                <ul>
-                    <li>Excel Avanzado (Modelado)</li>
-                    <li>Valuación DCF / WACC</li>
-                    <li>Análisis de EEFF</li>
-                    <li>Inglés (B2)</li>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Nahuel Barna</div>
+                <ul class="nav-links">
+                    <li><a href="#reportes">Reportes</a></li>
+                    <li><a href="#sobre">Sobre mí</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
-            </section>
-        </aside>
-    </div>
-</div>
+            </nav>
+        </div>
+    </header>
 
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Nahuel Barna - Buenos Aires, Argentina</p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Investigación Fundamental en Acciones</h1>
+                <p>Análisis DCF detallado y reportes de valuación de empresas latinoamericanas. Basado en datos públicos y metodología rigurosa.</p>
+                <a href="#reportes" class="cta-button">Ver Reportes</a>
+            </div>
+        </section>
+
+        <section class="reports-section" id="reportes">
+            <div class="container">
+                <h2 class="section-title">Serie de Investigación 2025</h2>
+                <div class="reports-grid" id="reportsContainer">
+                    <!-- Los reportes se cargan dinámicamente aquí -->
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" id="sobre">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Metodología de Análisis</h3>
+                        <p>Realizo investigación fundamental rigurosa en acciones latinoamericanas, con especial enfoque en empresas que cotizan en bolsas como MERVAL y B3.</p>
+                        <p>Cada reporte incluye:</p>
+                        <ul class="features-list">
+                            <li>Análisis de estados financieros históricos</li>
+                            <li>Modelo DCF con proyecciones a 10 años</li>
+                            <li>Análisis de múltiplos y comparables</li>
+                            <li>Estimación de costo de capital (WACC)</li>
+                            <li>Identificación de riesgos y catalistas</li>
+                            <li>Recomendación clara con precio objetivo</li>
+                        </ul>
+                    </div>
+                    <div class="methodology">
+                        <h4>Enfoque de Valuación</h4>
+                        <p>Utilizo el Discounted Cash Flow (DCF) como método principal de valuación, complementado con análisis de múltiplos históricos y sectoriales.</p>
+                        <p style="margin-top: 1rem; font-size: 0.95rem; color: #94a3b8;">El objetivo es identificar oportunidades de inversión con margen de seguridad significativo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Conectar</h4>
+                    <div class="social-links">
+                        <a href="https://x.com/BarnaNahuel00" class="social-link" title="Twitter/X">
+                            <span style="font-size: 1.2rem;">𝕏</span>
+                        </a>
+                        <a href="https://linkedin.com/in/nahuel-barna" class="social-link" title="LinkedIn">
+                            <span style="font-size: 1.2rem;">in</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Portal</h4>
+                    <a href="https://nahuelbarna.netlify.app">Ir al portal de research</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <a href="#reportes">Reportes</a>
+                    <a href="#sobre">Metodología</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nahuel Barna. Análisis independiente para propósitos informativos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data de reportes - actualizar aquí con cada nuevo reporte
+        const reports = [
+            {
+                ticker: 'MELI',
+                company: 'MercadoLibre',
+                date: 'Enero 2025',
+                description: 'Análisis completo de MercadoLibre con proyecciones a 10 años. Incluye valuación de Fintech y Publicidad.',
+                priceTarget: '$2,919 (+71.7%)',
+                recommendation: 'COMPRA',
+                pdfLink: 'https://drive.google.com/file/d/1example/view'
+            },
+            {
+                ticker: 'NU',
+                company: 'Nu Holdings',
+                date: 'Por publicar',
+                description: 'Análisis de Nu Holdings, liderazgo en FinTech latinoamericano. Modelo de negocio escalable y margen de seguridad.',
+                priceTarget: 'En desarrollo',
+                recommendation: 'ANÁLISIS EN CURSO',
+                pdfLink: '#'
+            },
+            {
+                ticker: 'MSFT',
+                company: 'Microsoft',
+                date: 'Por publicar',
+                description: 'Análisis de Microsoft con enfoque en AI, Cloud Computing y posición competitiva. Parte de la serie global.',
+                priceTarget: 'En desarrollo',
+                recommendation: 'ANÁLISIS EN CURSO',
+                pdfLink: '#'
+            }
+        ];
+
+        // Render reports
+        function renderReports() {
+            const container = document.getElementById('reportsContainer');
+            container.innerHTML = reports.map(report => `
+                <div class="report-card">
+                    <span class="ticker">${report.ticker}</span>
+                    <h3 class="report-title">${report.company}</h3>
+                    <div class="report-meta">
+                        <span>${report.date}</span>
+                        <span>${report.recommendation}</span>
+                    </div>
+                    <p class="report-description">${report.description}</p>
+                    <div class="price-target">${report.priceTarget}</div>
+                    ${report.pdfLink !== '#' ? 
+                        `<a href="${report.pdfLink}" target="_blank" class="report-link">Leer Reporte Completo →</a>` :
+                        `<span style="color: #64748b;">Reporte en desarrollo...</span>`
+                    }
+                </div>
+            `).join('');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize
+        renderReports();
+    </script>
+</body>
+</html>
     </div>
 </footer>
 

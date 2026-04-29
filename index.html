@@ -2,21 +2,164 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nahuel - Finanzas y Análisis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nahuel | Finance & Analysis</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
-        h1 { color: #2c3e50; }
-        .tag { background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.9em; }
+        :root {
+            --bloomberg-blue: #0000ff;
+            --dark-grey: #121212;
+            --light-grey: #f4f4f4;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey);
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            border-bottom: 3px solid var(--dark-grey);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: var(--bloomberg-blue);
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--dark-grey);
+            padding-bottom: 5px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--bloomberg-blue);
+            background-color: #fafafa;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--bloomberg-blue);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <h1>Bienvenido a mi sitio personal</h1>
-    <p>Estudiante de Finanzas en UADE. Apasionado por el análisis de empresas y la macroeconomía.</p>
-    
-    <h2>Proyectos y Análisis</h2>
-    <ul>
-        <li>Modelos de valuación DCF y WACC</li>
-        <li>Seguimiento de variables macro (BCRA, Inflación)</li>
-    </ul>
+
+<header>
+    <div class="container">
+        <h1>NAHUEL BARNA</h1>
+        <div class="subtitle">FINANCE STUDENT @ UADE | INVESTMENT ANALYSIS</div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="grid">
+        <!-- Columna Principal -->
+        <main>
+            <section>
+                <h2>Análisis de Equity</h2>
+                <div class="card">
+                    <h3>MercadoLibre (MELI)</h3>
+                    <p>Valuación mediante DCF y análisis de múltiplos comparables. Proyección de flujo de caja libre basada en expansión regional.</p>
+                </div>
+                <div class="card">
+                    <h3>NVIDIA (NVDA)</h3>
+                    <p>Análisis de WACC y sensibilidad ante cambios en la tasa libre de riesgo y crecimiento terminal (g).</p>
+                </div>
+                <div class="card">
+                    <h3>Apple & Microsoft</h3>
+                    <p>Comparativa de estructuras de capital y retorno sobre capital invertido (ROIC).</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Macroeconomía Argentina</h2>
+                <div class="card">
+                    <h3>Monitor de Variables</h3>
+                    <p>Seguimiento de inflación (IPC), reservas del BCRA y brecha cambiaria (MEP/CCL).</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Columna Lateral -->
+        <aside>
+            <section>
+                <h2>Formación</h2>
+                <p><strong>Lic. en Finanzas</strong><br>UADE (2° Año)</p>
+                <p><strong>Certificaciones</strong><br>Preparando Idoneidad CNV</p>
+            </section>
+
+            <section>
+                <h2>Skills</h2>
+                <ul>
+                    <li>Excel Avanzado (Modelado)</li>
+                    <li>Valuación DCF / WACC</li>
+                    <li>Análisis de EEFF</li>
+                    <li>Inglés (B2)</li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Nahuel Barna - Buenos Aires, Argentina</p>
+    </div>
+</footer>
+
 </body>
 </html>
